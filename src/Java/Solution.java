@@ -1,6 +1,9 @@
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
+
+public class Solution {
+
 /*
 We want to cache solutions
 Any stone that ends up with length as a power of 2 will then start dividing down into individual digits.
@@ -29,31 +32,30 @@ So, every time we do a calculation for any input, we cache the input and an outp
 
 
 
-public class Solution {
     private final BigInteger twentyFortyEight = BigInteger.valueOf(2024);
     private final Map<BigInteger, BigInteger[]> cache;
 
     public Solution() {
-         this.cache = new HashMap<>();
-         cache.put(BigInteger.valueOf(1), new BigInteger[]{twentyFortyEight});//look at that, we already have the first one!
+        this.cache = new HashMap<>();
+        cache.put(BigInteger.valueOf(1), new BigInteger[]{twentyFortyEight});//look at that, we already have the first one!
     }
 
 
 
     public int solve(int n, Integer[] array) {
-        BigInteger[] solution = new BigInteger[0];
+        int solution = 0;
         for(int i = 0; i < array.length; ++i) {
-            solution = combineArrays(solution, recurse(n, BigInteger.valueOf(array[i])));
+            solution += recurse(n, BigInteger.valueOf(array[i]));
         }
-        return solution.length;
+        return solution;
     }
 
-    public BigInteger[] recurse(int n, BigInteger stone) {
+    public int recurse(int n, BigInteger stone) {
 
 
         //base case, no more recursion
         if(n == 0) {
-            return new BigInteger[]{stone};
+            return 1;
         }
 
         //behavior 1
@@ -64,10 +66,9 @@ public class Solution {
         //behavior 2:
         String str = stone.toString();
         if(str.length() % 2 == 0) {
-            return combineArrays(
-                    recurse(n-1, new BigInteger(str.substring(0, str.length()/2))),
-                    recurse(n-1, new BigInteger(str.substring(str.length()/2)))
-            );
+            return recurse(n-1, new BigInteger(str.substring(0, str.length()/2)))
+                    + recurse(n-1, new BigInteger(str.substring(str.length()/2)));
+
         }
 
 
@@ -118,4 +119,5 @@ public class Solution {
     //
     //     return recursiveDoThing(n-1, stone * 2024);
     // }
+
 }
