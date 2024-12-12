@@ -31,12 +31,12 @@ So, every time we do a calculation for any input, we cache the input and an outp
 
 public class Solution {
 
-    private final BigInteger twentyFortyEight = BigInteger.valueOf(2024);
+    private final BigInteger twentyTwentyFour = BigInteger.valueOf(2024);
     private final Map<BigInteger, BigInteger[]> cache;
 
     public Solution() {
         this.cache = new HashMap<>();
-        cache.put(BigInteger.valueOf(1), new BigInteger[]{twentyFortyEight});//look at that, we already have the first one!
+        cache.put(BigInteger.valueOf(1), new BigInteger[]{twentyTwentyFour});//look at that, we already have the first one!
     }
 
 
@@ -69,6 +69,6 @@ public class Solution {
         }
 
         //behavior 3:
-        return recurse(n-1, stone.multiply(twentyFortyEight));
+        return recurse(n-1, stone.multiply(twentyTwentyFour));
     }
 }
