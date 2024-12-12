@@ -2,8 +2,6 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution {
-
 /*
 We want to cache solutions
 Any stone that ends up with length as a power of 2 will then start dividing down into individual digits.
@@ -31,6 +29,7 @@ So, every time we do a calculation for any input, we cache the input and an outp
  */
 
 
+public class Solution {
 
     private final BigInteger twentyFortyEight = BigInteger.valueOf(2024);
     private final Map<BigInteger, BigInteger[]> cache;
@@ -51,8 +50,6 @@ So, every time we do a calculation for any input, we cache the input and an outp
     }
 
     public int recurse(int n, BigInteger stone) {
-
-
         //base case, no more recursion
         if(n == 0) {
             return 1;
@@ -71,53 +68,7 @@ So, every time we do a calculation for any input, we cache the input and an outp
 
         }
 
-
         //behavior 3:
         return recurse(n-1, stone.multiply(twentyFortyEight));
     }
-
-    public BigInteger[] combineArrays(BigInteger[] left, BigInteger[] right) {
-        BigInteger[] combined = new BigInteger[left.length + right.length];
-        System.arraycopy(left, 0, combined, 0, left.length);
-        System.arraycopy(right, 0, combined, left.length, right.length);
-
-        return combined;
-    }
-
-
-
-    // public static int solve(int n, long[] array) {
-    //     List<Long> solution = new ArrayList<>();
-    //     for(int i = 0; i < array.length; i++) {
-    //         solution.addAll(recursiveDoThing(n, array[i]));
-    //     }
-    //     return solution.size();
-    // }
-
-    // public static List<Long> recursiveDoThing(int n, Long stone) {
-    //     //base case no more recursing
-    //     if(n == 0) {
-    //         List<Long> newList = new ArrayList<Long>();
-    //         newList.add(stone);
-    //         return newList;
-    //     }
-    //
-    //
-    //     if(stone == 0) {
-    //         return recursiveDoThing(n-1, 1L);
-    //     }
-    //
-    //
-    //     String intString = String.valueOf(stone);
-    //     if(intString.length() % 2 == 0) {
-    //         List<Long> left = recursiveDoThing(n-1, Long.parseLong(intString.substring(0, intString.length()/2)));
-    //         left.addAll(recursiveDoThing(n-1, Long.parseLong(intString.substring(intString.length()/2))));
-    //
-    //         return left;
-    //
-    //     }
-    //
-    //     return recursiveDoThing(n-1, stone * 2024);
-    // }
-
 }
