@@ -41,34 +41,59 @@ public class Solution {
 
 
 
-    public int solve(int n, Integer[] array) {
-        int solution = 0;
-        for(int i = 0; i < array.length; ++i) {
-            solution += recurse(n, BigInteger.valueOf(array[i]));
-        }
-        return solution;
-    }
-
-    public int recurse(int n, BigInteger stone) {
-        //base case, no more recursion
-        if(n == 0) {
-            return 1;
-        }
-
-        //behavior 1
-        if(stone.compareTo(BigInteger.ZERO) == 0) {
-            return recurse(n-1, BigInteger.ONE);
-        }
-
-        //behavior 2:
-        String str = stone.toString();
-        if(str.length() % 2 == 0) {
-            return recurse(n-1, new BigInteger(str.substring(0, str.length()/2)))
-                    + recurse(n-1, new BigInteger(str.substring(str.length()/2)));
-
-        }
-
-        //behavior 3:
-        return recurse(n-1, stone.multiply(twentyTwentyFour));
-    }
+//    public int solve(int n, Integer[] array) {
+//        int solution = 0;
+//        for(int i = 0; i < array.length; ++i) {
+//            solution += recurse(n, BigInteger.valueOf(array[i]));
+//        }
+//        return solution;
+//    }
+//
+//    public BigInteger[] recurse(int n, BigInteger stone) {
+//        //base case, no more recursion
+//        if(n == 0) {
+//            return new BigInteger[]{BigInteger.ONE};
+//        }
+//
+//        //check cache
+//        if(cache.containsKey(stone)) {
+//            return cache.get(stone).length;
+//        }
+//
+//        //behavior 1
+//        if(stone.compareTo(BigInteger.ZERO) == 0) {
+//            return recurse(n-1, BigInteger.ONE);
+//        }
+//
+//        //behavior 2:
+//        String str = stone.toString();
+//        if(str.length() % 2 == 0) {
+//            return recurse(n-1, new BigInteger(str.substring(0, str.length()/2)))
+//                    + recurse(n-1, new BigInteger(str.substring(str.length()/2)));
+//
+//        }
+//
+//        //behavior 3:
+//
+//        return recurse(n-1, stone.multiply(twentyTwentyFour));
+//    }
+//
+//    private BigInteger[] blink(BigInteger stone) {
+//        //behavior 1
+//        if(stone.compareTo(BigInteger.ZERO) == 0) {
+//            cache.put(stone, recurse(n-1, BigInteger.ONE))
+//            return ;
+//        }
+//
+//        //behavior 2:
+//        String str = stone.toString();
+//        if(str.length() % 2 == 0) {
+//            return recurse(n-1, new BigInteger(str.substring(0, str.length()/2)))
+//                    + recurse(n-1, new BigInteger(str.substring(str.length()/2)));
+//
+//        }
+//
+//        //behavior 3:
+//        return recurse(n-1, stone.multiply(twentyTwentyFour));
+//    }
 }
